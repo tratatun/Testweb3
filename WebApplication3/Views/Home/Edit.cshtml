@@ -1,0 +1,53 @@
+﻿@model WebApplication3.Models.VacationViewModel
+@{
+    ViewBag.Title = "Edit vacation";
+}
+
+<div class="jumbotron">
+    <h2>Edit vacation</h2>
+    <p class="lead"></p>
+    
+</div>
+
+<div class="row">
+    @using (Html.BeginForm("Edit"))
+    { 
+    
+        <div class="col-md-3">
+            <p>
+                @Html.LabelFor(m => m.StartsAt)
+
+                <div class='input-group date' id='datetimepicker1'>
+                    @Html.TextBox("StartsAt", Model.StartsAt.ToString("yyyy/MM/dd"), new { @class = "form-control" })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </p>
+            <p>
+                @Html.LabelFor(m => m.EndsAt)
+                <div class='input-group date' id='datetimepicker2'>
+                    @Html.TextBox("EndsAt", Model.EndsAt.ToString("yyyy/MM/dd"), new { @class = "form-control" })
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </p>
+
+            <p>
+                @Html.LabelFor(m => m.Description)
+                @Html.TextBoxFor(m => m.Description)
+            </p>
+            <p>
+                <input type="submit" value="Apply" />
+            </p>
+        </div>
+
+    }
+    <script type="text/javascript">
+        window.onload = function () {
+            $('#datetimepicker1').datetimepicker({ format: "YYYY/MM/DD" });
+            $("#datetimepicker2").datetimepicker({ format: "YYYY/MM/DD" });
+            };
+    </script>
+</div>

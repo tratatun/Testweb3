@@ -1,0 +1,28 @@
+﻿@model List<WebApplication3.Models.VacationViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Planned vacations</h2>
+    <p class="lead"></p>
+        <input type="button" value="Add vacation" class="btn btn-default btn-lg" onclick="location.href='@Url.Action("Add", "Home")'" />
+</div>
+
+<div class="row">
+    @foreach (var t in Model)
+    {
+        <div class="col-md-4 bg-info">
+            <h3 class="form-control">@t.StartsAt.ToString("yyyy/MM/dd")</h3>
+            <h3 class="form-control">@t.EndsAt.ToString("yyyy/MM/dd")</h3>
+            <p class="form-control bg-success">
+                @t.Description
+            </p>
+            <p class="form-control">
+                @t.ApplicationUser.UserName
+            </p>
+                @Html.ActionLink("Edit", "Edit", new {id = t.Id}, new { @class = "btn btn-primary btn-lg" })
+                @Html.ActionLink("Delete", "Delete", new {id = t.Id}, new { @class = "btn btn-primary btn-lg" })
+        </div>
+    }
+</div>
